@@ -20,7 +20,7 @@ export async function POST() {
       linkedinUrl: socialLinks.linkedin,
       githubUrl: socialLinks.github,
       googleScholarUrl: socialLinks.googleScholar,
-      summary: `Forward Deployed Engineer at Luminary Cloud with a PhD in Mechanical Engineering and Computational Science from Penn State (Dec 2025). Expertise in scientific machine learning, graph neural networks, and high-performance computing. Experienced in developing efficient, scalable surrogate models for complex physics simulations.`,
+      summary: `Forward Deployed Engineer at Luminary Cloud with a Ph.D. in Mechanical Engineering and Computational Science from Penn State (Dec 2025). Expertise in scientific machine learning, graph neural networks, and high-performance computing. Experienced in developing efficient, scalable surrogate models for complex physics simulations.`,
       education: education.map((edu) => ({
         institution: edu.institution,
         degree: edu.degree,

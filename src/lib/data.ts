@@ -6,7 +6,7 @@ export const personalInfo = {
   email: 'rik.raut98@gmail.com',
   workEmail: 'riddhiman@luminarycloud.com',
   location: 'San Francisco Bay Area',
-  education: 'PhD Mechanical Engineering (SciML) | Penn State',
+  education: 'Ph.D. Mechanical Engineering (SciML) | Penn State',
 };
 
 export const socialLinks = {
@@ -18,7 +18,7 @@ export const socialLinks = {
 export const aboutContent = {
   paragraphs: [
     "I'm a Forward Deployed Engineer at Luminary Cloud, where I work at the intersection of cloud computing and computational physics. My work focuses on making complex engineering simulations accessible and efficient through modern infrastructure.",
-    'With a PhD in Mechanical Engineering from Penn State, I specialized in Scientific Machine Learning (SciML), developing novel approaches to accelerate physics simulations using neural networks and graph-based architectures.',
+    'With a Ph.D. in Mechanical Engineering from Penn State, I specialized in Scientific Machine Learning (SciML), developing novel approaches to accelerate physics simulations using neural networks and graph-based architectures.',
   ],
   highlights: [
     { label: 'Physics AI', description: 'Neural surrogate models for CFD/FEA' },
@@ -61,17 +61,17 @@ export const experiences = [
 export const education = [
   {
     id: 'pennstate',
-    institution: 'Penn State University',
-    degree: 'PhD Mechanical Engineering',
+    institution: 'The Pennsylvania State University',
+    degree: 'Ph.D. in Mechanical Engineering',
     field: 'Minor in Computational Science',
-    period: 'Dec 2025',
+    period: 'Aug 2020 - Dec 2025',
     location: 'State College, PA',
     logo: '/images/logos/pennstate.png',
   },
   {
     id: 'jadavpur',
     institution: 'Jadavpur University',
-    degree: 'BE Mechanical Engineering',
+    degree: 'B.E. in Mechanical Engineering',
     field: '',
     period: '2016 - 2020',
     location: 'Kolkata, India',
