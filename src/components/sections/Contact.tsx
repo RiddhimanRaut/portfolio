@@ -1,12 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Section from '@/components/ui/Section';
+import { EpochSection } from '@/components/EpochReveal';
 import { personalInfo, socialLinks } from '@/lib/data';
 
 export default function Contact() {
   return (
-    <Section id="contact" className="pb-8">
+    <EpochSection id="contact" className="pb-8">
       <div className="text-center">
         <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl">
           Let&apos;s Work Together
@@ -68,7 +68,7 @@ export default function Contact() {
           reserved.
         </p>
       </footer>
-    </Section>
+    </EpochSection>
   );
 }
 
