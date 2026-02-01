@@ -2,13 +2,13 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import Section from '@/components/ui/Section';
+import { EpochSection } from '@/components/EpochReveal';
 import TimelineItem from '@/components/ui/TimelineItem';
 import { experiences, education } from '@/lib/data';
 
 export default function Experience() {
   return (
-    <Section id="experience">
+    <EpochSection id="experience">
       <h2 className="mb-12 text-3xl font-bold text-white md:text-4xl">
         Experience
       </h2>
@@ -71,6 +71,6 @@ export default function Experience() {
           </motion.div>
         ))}
       </div>
-    </Section>
+    </EpochSection>
   );
 }

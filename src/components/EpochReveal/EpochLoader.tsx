@@ -77,7 +77,7 @@ export default function EpochLoader({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.1 }}
-          className="absolute inset-0 z-20 flex items-center justify-center backdrop-blur-md"
+          className="absolute inset-0 z-20 flex items-center justify-center bg-zinc-950/90 backdrop-blur-sm"
         >
           <div className="w-full max-w-md px-6">
             <div className="rounded-xl border border-zinc-800 bg-zinc-900/95 p-6 shadow-2xl">
