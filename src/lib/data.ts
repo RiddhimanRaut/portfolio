@@ -88,7 +88,7 @@ export const projects = [
       'Built graph convolutional networks for scan-path optimization in laser powder bed fusion. Demonstrated scalability and generalizability for 2x, 3x, and 4x domains using transfer learning.',
     tags: ['GNN', 'Additive Manufacturing', 'Transfer Learning'],
     publication: true,
-    link: 'https://arxiv.org/abs/2407.13838',
+    link: 'https://www.sciencedirect.com/science/article/abs/pii/S095219762500898X',
     images: ['/images/projects/lpbf-fig3.jpeg', '/images/projects/lpbf-fig1.png'],
   },
   {
