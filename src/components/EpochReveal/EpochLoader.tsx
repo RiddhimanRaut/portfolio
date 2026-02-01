@@ -43,8 +43,8 @@ export default function EpochLoader({
       return;
     }
 
-    // Fast progress bar - 250ms total
-    const duration = 250;
+    // Visible progress bar - 800ms total
+    const duration = 800;
     const interval = 16;
     const steps = duration / interval;
     let step = 0;
