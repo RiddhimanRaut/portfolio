@@ -44,6 +44,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 6,
   },
+  // Summary/Bio
+  summary: {
+    fontSize: 10,
+    lineHeight: 1.35,
+    textAlign: 'justify',
+    marginBottom: 4,
+  },
   // Section
   sectionTitle: {
     fontSize: 11,
@@ -176,6 +183,9 @@ function ResumeDocument({ data }: { data: ResumeData }) {
         </View>
 
         <View style={styles.divider} />
+
+        {/* Summary */}
+        <Text style={styles.summary}>{data.summary}</Text>
 
         {/* Education */}
         <Text style={styles.sectionTitle}>Education</Text>
