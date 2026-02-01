@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import Anthropic from '@anthropic-ai/sdk';
 import { generateResumePDF, ResumeData } from '@/lib/resumeTemplate';
 import {
   personalInfo,
@@ -10,89 +9,9 @@ import {
   socialLinks,
 } from '@/lib/data';
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
-
 export async function POST() {
   try {
-    // Prepare the portfolio data for Claude
-    const portfolioData = {
-      personalInfo,
-      experiences,
-      education,
-      projects,
-      skills,
-      socialLinks,
-    };
-
-    // Use Claude to generate a polished resume
-    const message = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2000,
-      messages: [
-        {
-          role: 'user',
-          content: `You are helping generate a professional one-page resume. Based on the following portfolio data, create a polished resume in JSON format.
-
-PORTFOLIO DATA:
-${JSON.stringify(portfolioData, null, 2)}
-
-Generate a JSON response with EXACTLY this structure (no markdown, just raw JSON):
-{
-  "summary": "A 2-3 sentence professional summary highlighting current role, expertise, and career focus. Should mention PhD completed in Dec 2025, current role at Luminary Cloud, and expertise in SciML/GNNs/HPC.",
-  "experience": [
-    {
-      "company": "Company Name",
-      "role": "Role Title",
-      "period": "Date Range",
-      "location": "City, State",
-      "bullets": ["Achievement 1 with metrics", "Achievement 2 with impact"],
-      "tools": "Programming: X, Y; ML: A, B; HPC: C, D"
-    }
-  ],
-  "projects": [
-    {
-      "title": "Project Title",
-      "period": "Date Range",
-      "bullets": ["What was built", "Key results/impact"],
-      "publication": "Paper title if applicable",
-      "publicationLink": "URL if applicable"
-    }
-  ],
-  "leadership": ["Leadership item 1", "Leadership item 2"]
-}
-
-IMPORTANT GUIDELINES:
-1. The summary should reflect that the PhD was COMPLETED in December 2025 (not "candidate")
-2. Current role is Forward Deployed Engineer at Luminary Cloud (Jan 2026 - Present)
-3. Keep bullet points concise but impactful with quantifiable achievements where possible
-4. For experience, include relevant tools used
-5. For projects, include publication info with ArXiv links
-6. Include 2 leadership items: mentoring honors student and delivering ML lectures
-7. Make sure all content fits on ONE page (limit bullets, be concise)
-
-Return ONLY the JSON, no explanation or markdown formatting.`,
-        },
-      ],
-    });
-
-    // Extract the text content from Claude's response
-    const responseText = message.content[0].type === 'text' ? message.content[0].text : '';
-
-    // Parse the JSON response
-    let generatedContent;
-    try {
-      // Try to extract JSON if it's wrapped in markdown code blocks
-      const jsonMatch = responseText.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
-      const jsonStr = jsonMatch ? jsonMatch[1] : responseText;
-      generatedContent = JSON.parse(jsonStr.trim());
-    } catch {
-      console.error('Failed to parse Claude response:', responseText);
-      throw new Error('Failed to parse resume content from AI');
-    }
-
-    // Construct the full resume data
+    // Build resume data directly from portfolio data
     const resumeData: ResumeData = {
       name: personalInfo.name,
       email: personalInfo.email,
@@ -100,7 +19,7 @@ Return ONLY the JSON, no explanation or markdown formatting.`,
       location: personalInfo.location,
       linkedinUrl: socialLinks.linkedin,
       githubUrl: socialLinks.github,
-      summary: generatedContent.summary,
+      summary: `Forward Deployed Engineer at Luminary Cloud with a PhD in Mechanical Engineering and Computational Science from Penn State (Dec 2025). Expertise in scientific machine learning, graph neural networks, and high-performance computing. Experienced in developing efficient, scalable surrogate models for complex physics simulations.`,
       education: education.map((edu) => ({
         institution: edu.institution,
         degree: edu.degree,
@@ -109,15 +28,35 @@ Return ONLY the JSON, no explanation or markdown formatting.`,
         location: edu.location,
         gpa: edu.id === 'pennstate' ? '3.85' : undefined,
       })),
-      experience: generatedContent.experience,
-      projects: generatedContent.projects,
+      experience: experiences.map((exp) => ({
+        company: exp.company,
+        role: exp.role,
+        period: exp.period,
+        location: exp.location,
+        bullets: exp.description,
+        tools: exp.id === 'luminary'
+          ? 'Cloud Infrastructure, CFD/FEA, Python, Simulation Workflows'
+          : exp.id === 'pasteur'
+          ? 'Python (JAX, PyTorch), GNNs, Neural Operators, CUDA, Azure ML'
+          : undefined,
+      })),
+      projects: projects.map((proj) => ({
+        title: proj.title,
+        period: proj.period,
+        bullets: [proj.description],
+        publication: proj.publication ? proj.title : undefined,
+        publicationLink: proj.link,
+      })),
       skills: {
         programming: skills.programming.items,
         ml: skills.ml.items,
         hpc: skills.hpc.items,
         simulation: skills.simulation.items,
       },
-      leadership: generatedContent.leadership,
+      leadership: [
+        'Mentoring Schreyer Honors student in research on Geometric Neural Operators and Diffusion Models',
+        'Delivered graduate-level lectures on machine learning',
+      ],
     };
 
     // Generate PDF
