@@ -2,14 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from 'framer-motion';
-import ParticleField from '@/components/ParticleField';
 
 export default function RocketLaunchAnimation({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [showParticles, setShowParticles] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
@@ -20,26 +18,12 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
   // Video scrubs during the middle portion of scroll
   const videoProgress = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
 
-  // Overlay opacity - faster transition
+  // Overlay opacity - goes to full after video
   const overlayOpacity = useTransform(
     scrollYProgress,
-    [0, 0.08, 0.1, 0.23, 0.26, 0.35],
-    [0.75, 0.6, 0.3, 0.3, 0.85, 1]
+    [0, 0.08, 0.1, 0.23, 0.26],
+    [0.75, 0.6, 0.3, 0.3, 1]
   );
-
-  // Particle field fades in quickly
-  const particleOpacity = useTransform(
-    scrollYProgress,
-    [0.32, 0.38],
-    [0, 1]
-  );
-
-  // Only show particles when needed (optimization)
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    if (latest > 0.3 && !showParticles) {
-      setShowParticles(true);
-    }
-  });
 
   // Video scrubbing - only when in range
   useMotionValueEvent(videoProgress, 'change', (latest) => {
@@ -76,7 +60,6 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
     return (
       <div ref={containerRef} className="relative">
         <div className="fixed inset-0 z-0 bg-zinc-950" />
-        <ParticleField />
         {children}
       </div>
     );
@@ -89,7 +72,6 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
         <video
           ref={videoRef}
           className="absolute left-1/2 top-1/2 min-h-[100vw] min-w-[100vh] -translate-x-1/2 -translate-y-1/2 -rotate-90 object-cover"
-          style={{ willChange: 'contents' }}
           playsInline
           muted
           preload="auto"
@@ -104,16 +86,6 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
           style={{ opacity: overlayOpacity }}
         />
       </div>
-
-      {/* Particle field with connected dots - only render when visible */}
-      {showParticles && (
-        <motion.div
-          className="fixed inset-0 z-[1]"
-          style={{ opacity: particleOpacity }}
-        >
-          <ParticleField />
-        </motion.div>
-      )}
 
       {/* Scrollable content */}
       {children}
