@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { EpochSection } from '@/components/EpochReveal';
+import Section from '@/components/ui/Section';
 import { skills } from '@/lib/data';
 
 const categoryIcons: Record<string, React.ReactNode> = {
@@ -38,7 +38,7 @@ export default function Skills() {
   const skillEntries = Object.entries(skills) as [string, { label: string; items: string[] }][];
 
   return (
-    <EpochSection id="skills">
+    <Section id="skills">
       <h2 className="mb-12 text-3xl font-bold text-white md:text-4xl">Skills</h2>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -78,6 +78,6 @@ export default function Skills() {
           );
         })}
       </div>
-    </EpochSection>
+    </Section>
   );
 }
