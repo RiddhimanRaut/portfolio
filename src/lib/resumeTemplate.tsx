@@ -7,31 +7,31 @@ import {
   Link,
 } from '@react-pdf/renderer';
 
-// Harvard Resume Format - clean, professional, tight spacing
+// Harvard Resume Format - tight spacing for 1 page
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 36,
-    paddingBottom: 36,
-    paddingHorizontal: 48,
+    paddingTop: 28,
+    paddingBottom: 28,
+    paddingHorizontal: 40,
     fontFamily: 'Times-Roman',
-    fontSize: 10.5,
-    lineHeight: 1.2,
+    fontSize: 10,
+    lineHeight: 1.15,
     color: '#000',
   },
   // Header
   header: {
     textAlign: 'center',
-    marginBottom: 6,
+    marginBottom: 4,
   },
   name: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Times-Bold',
-    letterSpacing: 1,
-    marginBottom: 10,
+    letterSpacing: 0.5,
+    marginBottom: 6,
   },
   contactLine: {
-    fontSize: 10,
-    marginBottom: 1,
+    fontSize: 9.5,
+    marginBottom: 0,
   },
   link: {
     color: '#000',
@@ -41,33 +41,33 @@ const styles = StyleSheet.create({
   divider: {
     borderBottomWidth: 1,
     borderBottomColor: '#000',
-    marginTop: 8,
-    marginBottom: 6,
+    marginTop: 6,
+    marginBottom: 4,
   },
   // Summary/Bio
   summary: {
-    fontSize: 10,
-    lineHeight: 1.35,
+    fontSize: 9.5,
+    lineHeight: 1.3,
     textAlign: 'justify',
-    marginBottom: 4,
+    marginBottom: 2,
   },
   // Section
   sectionTitle: {
-    fontSize: 11,
+    fontSize: 10,
     fontFamily: 'Times-Bold',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
-    marginBottom: 4,
-    marginTop: 8,
+    marginBottom: 2,
+    marginTop: 6,
   },
   sectionDivider: {
     borderBottomWidth: 0.5,
     borderBottomColor: '#000',
-    marginBottom: 6,
+    marginBottom: 4,
   },
   // Entry rows
   entryContainer: {
-    marginBottom: 6,
+    marginBottom: 4,
   },
   entryHeader: {
     flexDirection: 'row',
@@ -79,53 +79,53 @@ const styles = StyleSheet.create({
   },
   entryRight: {
     textAlign: 'right',
-    minWidth: 100,
+    minWidth: 90,
   },
   entryTitle: {
     fontFamily: 'Times-Bold',
-    fontSize: 10.5,
+    fontSize: 10,
   },
   entrySubtitle: {
     fontFamily: 'Times-Italic',
-    fontSize: 10.5,
+    fontSize: 10,
   },
   entryDetail: {
-    fontSize: 10,
+    fontSize: 9.5,
   },
   // Bullets
   bulletList: {
-    marginTop: 2,
+    marginTop: 1,
     marginLeft: 0,
   },
   bulletItem: {
     flexDirection: 'row',
-    marginBottom: 1,
-    paddingLeft: 8,
+    marginBottom: 0,
+    paddingLeft: 6,
   },
   bullet: {
     width: 8,
-    fontSize: 10.5,
+    fontSize: 10,
   },
   bulletText: {
     flex: 1,
-    fontSize: 10.5,
-    lineHeight: 1.25,
+    fontSize: 9.5,
+    lineHeight: 1.2,
   },
   // Skills
   skillsContainer: {
-    marginTop: 2,
+    marginTop: 1,
   },
   skillRow: {
     flexDirection: 'row',
-    marginBottom: 2,
+    marginBottom: 1,
     flexWrap: 'wrap',
   },
   skillLabel: {
     fontFamily: 'Times-Bold',
-    fontSize: 10.5,
+    fontSize: 9.5,
   },
   skillText: {
-    fontSize: 10.5,
+    fontSize: 9.5,
   },
 });
 
