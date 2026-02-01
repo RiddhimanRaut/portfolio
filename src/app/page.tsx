@@ -42,7 +42,7 @@ export default function Home() {
           className="mt-4 flex gap-6"
         >
           <a
-            href="https://linkedin.com/in/riddhimanraut"
+            href="https://www.linkedin.com/in/riddhiman-raut-21321b130/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-500 transition-colors hover:text-white"
@@ -53,7 +53,7 @@ export default function Home() {
             </svg>
           </a>
           <a
-            href="https://github.com/riddhimanraut"
+            href="https://github.com/RiddhimanRaut"
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-500 transition-colors hover:text-white"
