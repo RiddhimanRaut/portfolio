@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, MotionValue } from 'framer-motion';
 
 interface Particle {
   x: number;
@@ -12,7 +12,11 @@ interface Particle {
   opacity: number;
 }
 
-export default function ParticleField() {
+interface ParticleFieldProps {
+  opacity?: MotionValue<number>;
+}
+
+export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const particlesRef = useRef<Particle[]>([]);
@@ -138,13 +142,23 @@ export default function ParticleField() {
     return null;
   }
 
+  // If opacity prop is provided, use it; otherwise use default animation
+  const styleProps = opacity ? { opacity } : undefined;
+
+  // When opacity prop is provided, use absolute positioning (inside CFDRocketAnimation)
+  // Otherwise use fixed positioning (standalone usage)
+  const positionClass = opacity
+    ? 'pointer-events-none absolute inset-0'
+    : 'pointer-events-none fixed inset-0 z-0';
+
   return (
     <motion.canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 -z-10"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
+      className={positionClass}
+      initial={opacity ? undefined : { opacity: 0 }}
+      animate={opacity ? undefined : { opacity: 1 }}
+      transition={opacity ? undefined : { duration: 1.5 }}
+      style={styleProps}
     />
   );
 }
