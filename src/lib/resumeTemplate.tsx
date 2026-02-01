@@ -7,30 +7,30 @@ import {
   Link,
 } from '@react-pdf/renderer';
 
-// Harvard Resume Format - tight spacing for 1 page
+// Harvard Resume Format - balanced spacing for 1 page
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 28,
-    paddingBottom: 28,
-    paddingHorizontal: 40,
+    paddingTop: 32,
+    paddingBottom: 32,
+    paddingHorizontal: 44,
     fontFamily: 'Times-Roman',
     fontSize: 10,
-    lineHeight: 1.15,
+    lineHeight: 1.2,
     color: '#000',
   },
   // Header
   header: {
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: 5,
   },
   name: {
-    fontSize: 16,
+    fontSize: 17,
     fontFamily: 'Times-Bold',
     letterSpacing: 0.5,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   contactLine: {
-    fontSize: 9.5,
+    fontSize: 10,
     marginBottom: 0,
   },
   link: {
@@ -41,33 +41,33 @@ const styles = StyleSheet.create({
   divider: {
     borderBottomWidth: 1,
     borderBottomColor: '#000',
-    marginTop: 6,
-    marginBottom: 4,
+    marginTop: 7,
+    marginBottom: 5,
   },
   // Summary/Bio
   summary: {
-    fontSize: 9.5,
+    fontSize: 10,
     lineHeight: 1.3,
     textAlign: 'justify',
-    marginBottom: 2,
+    marginBottom: 3,
   },
   // Section
   sectionTitle: {
-    fontSize: 10,
+    fontSize: 10.5,
     fontFamily: 'Times-Bold',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
-    marginBottom: 2,
-    marginTop: 6,
+    marginBottom: 3,
+    marginTop: 7,
   },
   sectionDivider: {
     borderBottomWidth: 0.5,
     borderBottomColor: '#000',
-    marginBottom: 4,
+    marginBottom: 5,
   },
   // Entry rows
   entryContainer: {
-    marginBottom: 4,
+    marginBottom: 5,
   },
   entryHeader: {
     flexDirection: 'row',
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   },
   entryRight: {
     textAlign: 'right',
-    minWidth: 90,
+    minWidth: 95,
   },
   entryTitle: {
     fontFamily: 'Times-Bold',
@@ -90,16 +90,16 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   entryDetail: {
-    fontSize: 9.5,
+    fontSize: 10,
   },
   // Bullets
   bulletList: {
-    marginTop: 1,
+    marginTop: 2,
     marginLeft: 0,
   },
   bulletItem: {
     flexDirection: 'row',
-    marginBottom: 0,
+    marginBottom: 1,
     paddingLeft: 6,
   },
   bullet: {
@@ -108,12 +108,12 @@ const styles = StyleSheet.create({
   },
   bulletText: {
     flex: 1,
-    fontSize: 9.5,
+    fontSize: 10,
     lineHeight: 1.2,
   },
   // Skills
   skillsContainer: {
-    marginTop: 1,
+    marginTop: 2,
   },
   skillRow: {
     flexDirection: 'row',
@@ -122,10 +122,10 @@ const styles = StyleSheet.create({
   },
   skillLabel: {
     fontFamily: 'Times-Bold',
-    fontSize: 9.5,
+    fontSize: 10,
   },
   skillText: {
-    fontSize: 9.5,
+    fontSize: 10,
   },
 });
 
