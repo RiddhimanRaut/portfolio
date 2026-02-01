@@ -30,7 +30,6 @@ export default function SpaceBackground() {
   const nebulaeRef = useRef<Nebula[]>([]);
   const animationRef = useRef<number>(0);
   const scrollYRef = useRef(0);
-  const mouseRef = useRef({ x: -1000, y: -1000 });
 
   useEffect(() => {
     if (prefersReducedMotion) return;
@@ -89,10 +88,6 @@ export default function SpaceBackground() {
       scrollYRef.current = window.scrollY;
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-
     const drawNebulae = (time: number) => {
       const scrollOffset = scrollYRef.current * 0.1;
 
@@ -126,7 +121,6 @@ export default function SpaceBackground() {
 
     const drawStars = (time: number) => {
       const scrollOffset = scrollYRef.current;
-      const mouse = mouseRef.current;
 
       starsRef.current.forEach((star) => {
         // Parallax effect based on layer
@@ -137,24 +131,6 @@ export default function SpaceBackground() {
 
         // Only draw if visible
         if (adjustedY > canvas.height + 10) return;
-
-        // Mouse interaction - stars scatter away from cursor
-        let offsetX = 0;
-        let offsetY = 0;
-        const dx = star.x - mouse.x;
-        const dy = adjustedY - mouse.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const maxDistance = 120;
-
-        if (distance < maxDistance && distance > 0) {
-          const force = (maxDistance - distance) / maxDistance;
-          const pushStrength = force * force * 40; // Quadratic falloff for snappy feel
-          offsetX = (dx / distance) * pushStrength;
-          offsetY = (dy / distance) * pushStrength;
-        }
-
-        const drawX = star.x + offsetX;
-        const drawY = adjustedY + offsetY;
 
         // Twinkling effect
         const twinkle = Math.sin(time * 0.001 * star.twinkleSpeed + star.twinkleOffset);
@@ -181,19 +157,19 @@ export default function SpaceBackground() {
         // Draw star glow for larger stars
         if (star.size > 1.5) {
           const glowSize = star.size * 3;
-          const glow = ctx.createRadialGradient(drawX, drawY, 0, drawX, drawY, glowSize);
+          const glow = ctx.createRadialGradient(star.x, adjustedY, 0, star.x, adjustedY, glowSize);
           glow.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${brightness * 0.3})`);
           glow.addColorStop(1, 'transparent');
           ctx.fillStyle = glow;
           ctx.beginPath();
-          ctx.arc(drawX, drawY, glowSize, 0, Math.PI * 2);
+          ctx.arc(star.x, adjustedY, glowSize, 0, Math.PI * 2);
           ctx.fill();
         }
 
         // Draw star core
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${brightness})`;
         ctx.beginPath();
-        ctx.arc(drawX, drawY, star.size, 0, Math.PI * 2);
+        ctx.arc(star.x, adjustedY, star.size, 0, Math.PI * 2);
         ctx.fill();
       });
     };
@@ -256,14 +232,12 @@ export default function SpaceBackground() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     animationRef.current = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, [prefersReducedMotion]);
 

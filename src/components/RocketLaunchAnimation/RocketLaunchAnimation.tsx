@@ -2,14 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from 'framer-motion';
-import ParticleField from '@/components/ParticleField';
+import SpaceBackground from '@/components/SpaceBackground';
 
 export default function RocketLaunchAnimation({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [showParticles, setShowParticles] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
@@ -18,38 +17,44 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
   });
 
   // Video scrubs during the middle portion of scroll
+  // 0-10%: Hold first frame (Hero visible)
+  // 10-25%: Video plays (rocket animation)
+  // 25-100%: Hold last frame (content visible)
   const videoProgress = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
 
-  // Overlay opacity
+  // Overlay opacity: darker at start and end for readability, lighter during animation
+  // Goes to 100% after About to transition to particles
   const overlayOpacity = useTransform(
     scrollYProgress,
-    [0, 0.08, 0.1, 0.23, 0.26, 0.35],
-    [0.75, 0.6, 0.3, 0.3, 0.9, 1]
+    [0, 0.08, 0.1, 0.23, 0.26, 0.4, 0.45],
+    [0.75, 0.6, 0.3, 0.3, 0.75, 0.95, 1]
   );
 
-  // Particle field fades in
+  // Particle field fades in as overlay reaches 100%
   const particleOpacity = useTransform(
     scrollYProgress,
-    [0.3, 0.4],
+    [0.4, 0.5],
     [0, 1]
   );
 
-  // Lazy load particles
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    if (latest > 0.25 && !showParticles) {
-      setShowParticles(true);
-    }
-  });
+  // Throttled video scrubbing for performance
+  const lastUpdateRef = useRef(0);
 
-  // Video scrubbing - only when in range
   useMotionValueEvent(videoProgress, 'change', (latest) => {
     const video = videoRef.current;
     if (!video || !isLoaded || duration === 0) return;
 
-    if (latest <= 0 || latest >= 1) return;
+    // Throttle updates to ~30fps
+    const now = performance.now();
+    if (now - lastUpdateRef.current < 33) return;
+    lastUpdateRef.current = now;
 
-    const targetTime = latest * duration;
-    video.currentTime = targetTime;
+    const clampedProgress = Math.max(0, Math.min(1, latest));
+    const targetTime = clampedProgress * duration;
+
+    if (Math.abs(video.currentTime - targetTime) > 0.03) {
+      video.currentTime = targetTime;
+    }
   });
 
   useEffect(() => {
@@ -74,7 +79,8 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
   if (prefersReducedMotion) {
     return (
       <div ref={containerRef} className="relative">
-        <div className="fixed inset-0 z-0 bg-zinc-950" />
+        <div className="fixed inset-0 z-0 bg-slate-950" />
+        <SpaceBackground />
         {children}
       </div>
     );
@@ -95,22 +101,22 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
           <source src="/videos/rocket.mp4" type="video/mp4" />
         </video>
 
-        {/* Dark overlay */}
+        {/* Dark overlay for text readability - fades to 100% for particle transition */}
         <motion.div
-          className="absolute inset-0 bg-zinc-950"
-          style={{ opacity: overlayOpacity }}
+          className="absolute inset-0 bg-slate-950"
+          style={{
+            opacity: overlayOpacity,
+          }}
         />
       </div>
 
-      {/* Particle field with connected dots */}
-      {showParticles && (
-        <motion.div
-          className="fixed inset-0 z-[1]"
-          style={{ opacity: particleOpacity }}
-        >
-          <ParticleField />
-        </motion.div>
-      )}
+      {/* Particle field fades in after video section */}
+      <motion.div
+        className="pointer-events-none fixed inset-0 z-[1]"
+        style={{ opacity: particleOpacity }}
+      >
+        <SpaceBackground />
+      </motion.div>
 
       {/* Scrollable content */}
       {children}

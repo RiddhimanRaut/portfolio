@@ -20,7 +20,7 @@ export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const particlesRef = useRef<Particle[]>([]);
-  const mouseRef = useRef({ x: -1000, y: -1000 });
+  const mouseRef = useRef({ x: 0, y: 0 });
   const animationRef = useRef<number>(0);
 
   useEffect(() => {
@@ -35,63 +35,52 @@ export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      initParticles();
     };
 
     const initParticles = () => {
-      const particleCount = Math.min(60, Math.floor((canvas.width * canvas.height) / 20000));
+      const particleCount = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
       particlesRef.current = [];
 
       for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
           radius: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.5 + 0.3,
+          opacity: Math.random() * 0.5 + 0.2,
         });
       }
     };
 
     const drawParticles = () => {
-      ctx.fillStyle = '#09090b';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const particles = particlesRef.current;
       const mouse = mouseRef.current;
 
       particles.forEach((particle, i) => {
-        // Mouse interaction - linear repulsion (straight lines)
-        const dx = particle.x - mouse.x;
-        const dy = particle.y - mouse.y;
+        // Mouse interaction - gentle repulsion
+        const dx = mouse.x - particle.x;
+        const dy = mouse.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const maxDistance = 150;
 
         if (distance < maxDistance && distance > 0) {
           const force = (maxDistance - distance) / maxDistance;
-          // Linear push - particles move in straight lines away from cursor
-          particle.vx += (dx / distance) * force * 0.5;
-          particle.vy += (dy / distance) * force * 0.5;
+          particle.vx -= (dx / distance) * force * 0.02;
+          particle.vy -= (dy / distance) * force * 0.02;
         }
 
-        // Apply velocity with slight damping
+        // Apply velocity with damping
         particle.x += particle.vx;
         particle.y += particle.vy;
-        particle.vx *= 0.98;
-        particle.vy *= 0.98;
+        particle.vx *= 0.99;
+        particle.vy *= 0.99;
 
-        // Brownian motion - small random impulses
-        particle.vx += (Math.random() - 0.5) * 0.1;
-        particle.vy += (Math.random() - 0.5) * 0.1;
-
-        // Clamp velocity for stability
-        const maxSpeed = 3;
-        const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
-        if (speed > maxSpeed) {
-          particle.vx = (particle.vx / speed) * maxSpeed;
-          particle.vy = (particle.vy / speed) * maxSpeed;
-        }
+        // Add slight random motion
+        particle.vx += (Math.random() - 0.5) * 0.02;
+        particle.vy += (Math.random() - 0.5) * 0.02;
 
         // Wrap around edges
         if (particle.x < 0) particle.x = canvas.width;
@@ -105,7 +94,7 @@ export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
         ctx.fillStyle = `rgba(148, 163, 184, ${particle.opacity})`;
         ctx.fill();
 
-        // Draw connections to nearby particles
+        // Draw connections
         for (let j = i + 1; j < particles.length; j++) {
           const other = particles[j];
           const connDx = particle.x - other.x;
@@ -116,7 +105,7 @@ export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(148, 163, 184, ${0.2 * (1 - connDistance / 120)})`;
+            ctx.strokeStyle = `rgba(148, 163, 184, ${0.15 * (1 - connDistance / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -130,15 +119,22 @@ export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
+    const handleResize = () => {
+      resizeCanvas();
+      initParticles();
+    };
+
     resizeCanvas();
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('resize', resizeCanvas);
-    animationRef.current = requestAnimationFrame(drawParticles);
+    initParticles();
+    drawParticles();
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
 
     return () => {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('resize', handleResize);
     };
   }, [prefersReducedMotion]);
 
@@ -146,26 +142,23 @@ export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
     return null;
   }
 
+  // If opacity prop is provided, use it; otherwise use default animation
+  const styleProps = opacity ? { opacity } : undefined;
+
+  // When opacity prop is provided, use absolute positioning (inside CFDRocketAnimation)
+  // Otherwise use fixed positioning (standalone usage)
   const positionClass = opacity
     ? 'pointer-events-none absolute inset-0'
     : 'pointer-events-none fixed inset-0 z-0';
 
-  if (opacity) {
-    return (
-      <motion.canvas
-        ref={canvasRef}
-        className={positionClass}
-        style={{ opacity }}
-        aria-hidden="true"
-      />
-    );
-  }
-
   return (
-    <canvas
+    <motion.canvas
       ref={canvasRef}
       className={positionClass}
-      aria-hidden="true"
+      initial={opacity ? undefined : { opacity: 0 }}
+      animate={opacity ? undefined : { opacity: 1 }}
+      transition={opacity ? undefined : { duration: 1.5 }}
+      style={styleProps}
     />
   );
 }
