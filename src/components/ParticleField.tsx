@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, MotionValue } from 'framer-motion';
 
 interface Particle {
   x: number;
@@ -12,7 +12,11 @@ interface Particle {
   opacity: number;
 }
 
-export default function ParticleField() {
+interface ParticleFieldProps {
+  opacity?: MotionValue<number>;
+}
+
+export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const particlesRef = useRef<Particle[]>([]);
@@ -142,10 +146,25 @@ export default function ParticleField() {
     return null;
   }
 
+  const positionClass = opacity
+    ? 'pointer-events-none absolute inset-0'
+    : 'pointer-events-none fixed inset-0 z-0';
+
+  if (opacity) {
+    return (
+      <motion.canvas
+        ref={canvasRef}
+        className={positionClass}
+        style={{ opacity }}
+        aria-hidden="true"
+      />
+    );
+  }
+
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none fixed inset-0 z-0"
+      className={positionClass}
       aria-hidden="true"
     />
   );
