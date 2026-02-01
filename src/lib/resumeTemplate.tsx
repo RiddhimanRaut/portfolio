@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'Times-Bold',
     letterSpacing: 1,
-    marginBottom: 4,
+    marginBottom: 10,
   },
   contactLine: {
     fontSize: 10,
