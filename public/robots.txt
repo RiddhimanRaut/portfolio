@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://riddhimanraut.com/sitemap.xml
+Sitemap: https://riddhimanraut.vercel.app/sitemap.xml

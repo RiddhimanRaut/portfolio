@@ -57,7 +57,7 @@ export const metadata: Metadata = {
       'Physics AI & Scientific Machine Learning | Luminary Cloud | Penn State Ph.D.',
   },
   alternates: {
-    canonical: 'https://riddhimanraut.com',
+    canonical: 'https://riddhimanraut.vercel.app',
   },
 };
 
