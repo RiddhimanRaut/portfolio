@@ -64,7 +64,7 @@ export const education = [
     institution: 'The Pennsylvania State University',
     degree: 'Ph.D. in Mechanical Engineering',
     field: 'Minor in Computational Science',
-    period: 'Aug 2020 - Dec 2025',
+    period: 'Aug 2022 - Dec 2025',
     location: 'State College, PA',
     logo: '/images/logos/pennstate.png',
   },
