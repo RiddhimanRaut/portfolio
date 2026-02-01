@@ -10,24 +10,24 @@ import {
 // Harvard Resume Format - balanced spacing for 1 page
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 32,
-    paddingBottom: 32,
-    paddingHorizontal: 44,
+    paddingTop: 34,
+    paddingBottom: 34,
+    paddingHorizontal: 46,
     fontFamily: 'Times-Roman',
     fontSize: 10,
-    lineHeight: 1.2,
+    lineHeight: 1.22,
     color: '#000',
   },
   // Header
   header: {
     textAlign: 'center',
-    marginBottom: 5,
+    marginBottom: 6,
   },
   name: {
     fontSize: 17,
     fontFamily: 'Times-Bold',
     letterSpacing: 0.5,
-    marginBottom: 8,
+    marginBottom: 9,
   },
   contactLine: {
     fontSize: 10,
@@ -41,15 +41,15 @@ const styles = StyleSheet.create({
   divider: {
     borderBottomWidth: 1,
     borderBottomColor: '#000',
-    marginTop: 7,
-    marginBottom: 5,
+    marginTop: 8,
+    marginBottom: 6,
   },
   // Summary/Bio
   summary: {
     fontSize: 10,
-    lineHeight: 1.3,
+    lineHeight: 1.35,
     textAlign: 'justify',
-    marginBottom: 3,
+    marginBottom: 4,
   },
   // Section
   sectionTitle: {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginBottom: 3,
-    marginTop: 7,
+    marginTop: 8,
   },
   sectionDivider: {
     borderBottomWidth: 0.5,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   // Entry rows
   entryContainer: {
-    marginBottom: 5,
+    marginBottom: 6,
   },
   entryHeader: {
     flexDirection: 'row',
