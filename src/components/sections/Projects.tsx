@@ -1,12 +1,12 @@
 'use client';
 
-import { EpochSection } from '@/components/EpochReveal';
+import Section from '@/components/ui/Section';
 import ProjectCard from '@/components/ui/ProjectCard';
 import { projects } from '@/lib/data';
 
 export default function Projects() {
   return (
-    <EpochSection id="projects">
+    <Section id="projects">
       <h2 className="mb-12 text-3xl font-bold text-white md:text-4xl">
         Projects
       </h2>
@@ -26,6 +26,6 @@ export default function Projects() {
           />
         ))}
       </div>
-    </EpochSection>
+    </Section>
   );
 }

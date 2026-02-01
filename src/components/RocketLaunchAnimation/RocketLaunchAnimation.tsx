@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent, useReducedMotion } from 'framer-motion';
+import ParticleField from '@/components/ParticleField';
 
 export default function RocketLaunchAnimation({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [duration, setDuration] = useState(0);
+  const [showParticles, setShowParticles] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
@@ -18,19 +20,32 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
   // Video scrubs during the middle portion of scroll
   const videoProgress = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
 
-  // Overlay opacity - goes to full after video
+  // Overlay opacity
   const overlayOpacity = useTransform(
     scrollYProgress,
-    [0, 0.08, 0.1, 0.23, 0.26],
-    [0.75, 0.6, 0.3, 0.3, 1]
+    [0, 0.08, 0.1, 0.23, 0.26, 0.35],
+    [0.75, 0.6, 0.3, 0.3, 0.9, 1]
   );
+
+  // Particle field fades in
+  const particleOpacity = useTransform(
+    scrollYProgress,
+    [0.3, 0.4],
+    [0, 1]
+  );
+
+  // Lazy load particles
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    if (latest > 0.25 && !showParticles) {
+      setShowParticles(true);
+    }
+  });
 
   // Video scrubbing - only when in range
   useMotionValueEvent(videoProgress, 'change', (latest) => {
     const video = videoRef.current;
     if (!video || !isLoaded || duration === 0) return;
 
-    // Only update if actually in the video range
     if (latest <= 0 || latest >= 1) return;
 
     const targetTime = latest * duration;
@@ -86,6 +101,16 @@ export default function RocketLaunchAnimation({ children }: { children: React.Re
           style={{ opacity: overlayOpacity }}
         />
       </div>
+
+      {/* Particle field with connected dots */}
+      {showParticles && (
+        <motion.div
+          className="fixed inset-0 z-[1]"
+          style={{ opacity: particleOpacity }}
+        >
+          <ParticleField />
+        </motion.div>
+      )}
 
       {/* Scrollable content */}
       {children}

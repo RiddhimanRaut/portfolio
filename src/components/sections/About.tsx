@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { EpochSection } from '@/components/EpochReveal';
+import Section from '@/components/ui/Section';
 import { HyperparameterSliders, TextMorpher, HighlightMorpher } from '@/components/HyperparameterSliders';
 import { useAITheme, useReducedMotion } from '@/context/AIThemeContext';
 import {
@@ -15,7 +15,7 @@ export default function About() {
   const reducedMotion = useReducedMotion();
 
   return (
-    <EpochSection id="about">
+    <Section id="about">
       <h2 className="mb-12 text-3xl font-bold text-white md:text-4xl">About</h2>
 
       <div className="grid gap-8 lg:grid-cols-[1fr_280px]">
@@ -65,6 +65,6 @@ export default function About() {
           </motion.div>
         ))}
       </div>
-    </EpochSection>
+    </Section>
   );
 }
