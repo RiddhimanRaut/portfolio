@@ -46,10 +46,38 @@ Continued work on AI-themed portfolio features and added a dynamic resume genera
 - Hyperparameter sliders in About section functional
 - Cursor-interactive stars in space background working
 
+#### 5. SEO Enhancements
+- Enhanced metadata with comprehensive keywords
+- Added Open Graph and Twitter card tags
+- Created `robots.txt` for crawler guidance
+- Created dynamic `sitemap.ts`
+- Canonical URL set to `riddhimanraut.com` (pending custom domain setup)
+
 ### Notes for Next Session
 - Resume pulls from `data.ts` - update that file to update resume content
 - To regenerate resume after data changes, just redeploy
 - Consider adding more experiences/projects as career progresses
+- **Custom domain setup pending** - see instructions below
+
+### How to Get Found on Google
+
+#### Step 1: Get a Custom Domain
+1. Buy `riddhimanraut.com` from Namecheap, Google Domains, or Cloudflare (~$10-12/year)
+2. In Vercel dashboard → Project Settings → Domains
+3. Add your domain and follow DNS configuration instructions
+4. Once connected, update `sitemap.ts` and `robots.txt` if using different domain
+
+#### Step 2: Submit to Google Search Console
+1. Go to https://search.google.com/search-console
+2. Add your domain as a property
+3. Verify ownership (Vercel makes this easy with DNS verification)
+4. Submit your sitemap: `https://riddhimanraut.com/sitemap.xml`
+5. Request indexing for your homepage
+
+#### Step 3: Boost Visibility
+- Link your portfolio from LinkedIn, GitHub, Google Scholar profiles
+- These backlinks help Google rank your site
+- Keep content updated (Google favors fresh content)
 
 ---
 
