@@ -41,7 +41,7 @@ Continued work on AI-themed portfolio features and added a dynamic resume genera
 - `src/lib/data.ts` - Updated education formatting, project links
 
 ### Current State
-- Website live at: https://portfolio-sandy-six-9s9jj8po42.vercel.app
+- Website live at: https://riddhimanraut.vercel.app
 - Resume generator working with 1-page Harvard format
 - Hyperparameter sliders in About section functional
 - Cursor-interactive stars in space background working
@@ -51,7 +51,7 @@ Continued work on AI-themed portfolio features and added a dynamic resume genera
 - Added Open Graph and Twitter card tags
 - Created `robots.txt` for crawler guidance
 - Created dynamic `sitemap.ts`
-- Canonical URL set to `riddhimanraut.com` (pending custom domain setup)
+- Canonical URL set to `riddhimanraut.vercel.app`
 
 ### Notes for Next Session
 - Resume pulls from `data.ts` - update that file to update resume content
@@ -61,13 +61,10 @@ Continued work on AI-themed portfolio features and added a dynamic resume genera
 
 ### How to Get Found on Google
 
-#### Step 1: Get a Custom Domain
-1. Buy `riddhimanraut.com` from Namecheap, Google Domains, or Cloudflare (~$10-12/year)
-2. In Vercel dashboard → Project Settings → Domains
-3. Add your domain and follow DNS configuration instructions
-4. Once connected, update `sitemap.ts` and `robots.txt` if using different domain
+#### Domain
+Using free Vercel subdomain: `riddhimanraut.vercel.app`
 
-#### Step 2: Submit to Google Search Console
+#### Step 1: Submit to Google Search Console
 1. Go to https://search.google.com/search-console
 2. Add your domain as a property
 3. Verify ownership (Vercel makes this easy with DNS verification)
