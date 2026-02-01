@@ -14,24 +14,50 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Riddhiman Raut | Forward Deployed Engineer',
+  title: 'Riddhiman Raut - Forward Deployed Engineer | Physics AI & SciML',
   description:
-    'Portfolio of Riddhiman Raut - Forward Deployed Engineer specializing in Simulations and Physics AI at Luminary Cloud. PhD in Mechanical Engineering with focus on Scientific Machine Learning.',
+    'Riddhiman Raut is a Forward Deployed Engineer at Luminary Cloud specializing in physics-informed machine learning, graph neural networks, and CFD/FEA simulations. Ph.D. in Mechanical Engineering from Penn State.',
   keywords: [
     'Riddhiman Raut',
     'Forward Deployed Engineer',
     'Physics AI',
-    'Simulations',
     'Scientific Machine Learning',
     'SciML',
+    'Graph Neural Networks',
+    'GNN',
+    'CFD',
+    'FEA',
     'Luminary Cloud',
+    'Penn State',
+    'Machine Learning Engineer',
+    'Simulation Engineer',
   ],
   authors: [{ name: 'Riddhiman Raut' }],
+  creator: 'Riddhiman Raut',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
   openGraph: {
-    title: 'Riddhiman Raut | Forward Deployed Engineer',
+    title: 'Riddhiman Raut - Forward Deployed Engineer',
     description:
-      'Forward Deployed Engineer specializing in Simulations and Physics AI at Luminary Cloud.',
+      'Forward Deployed Engineer at Luminary Cloud. Ph.D. in Mechanical Engineering specializing in Physics AI, Scientific Machine Learning, and Graph Neural Networks.',
     type: 'website',
+    locale: 'en_US',
+    siteName: 'Riddhiman Raut',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Riddhiman Raut - Forward Deployed Engineer',
+    description:
+      'Physics AI & Scientific Machine Learning | Luminary Cloud | Penn State Ph.D.',
+  },
+  alternates: {
+    canonical: 'https://riddhimanraut.com',
   },
 };
 
