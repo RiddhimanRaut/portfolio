@@ -3,7 +3,7 @@
 ## Session: February 1, 2026
 
 ### Summary
-Continued work on AI-themed portfolio features and added a dynamic resume generator.
+Continued work on AI-themed portfolio features, added a dynamic resume generator, set up SEO, and configured custom Vercel subdomain.
 
 ### What Was Done
 
@@ -26,12 +26,25 @@ Continued work on AI-themed portfolio features and added a dynamic resume genera
 - Combined contact info and social links on single line
 - Updated Scalable GNNs project to peer-reviewed ScienceDirect link
 
-#### 4. Resume Styling
-- Harvard format with tight, balanced spacing
+#### 4. Resume Styling (Harvard Format)
+- Balanced spacing to fit on 1 page
 - 17pt name, 10pt body text
+- Page padding: 34pt vertical, 46pt horizontal
 - Proper section dividers
 - Right-aligned dates and locations
 - Justified summary text
+
+#### 5. SEO Enhancements
+- Enhanced metadata with comprehensive keywords
+- Added Open Graph and Twitter card tags
+- Created `robots.txt` for crawler guidance
+- Created dynamic `sitemap.ts`
+- Canonical URL: `riddhimanraut.vercel.app`
+
+#### 6. Custom Domain Setup
+- Set up free Vercel subdomain: `riddhimanraut.vercel.app`
+- Configured deployment protection to allow public access to production
+- Updated all SEO files with correct URL
 
 ### Key Files Modified
 - `src/lib/resumeTemplate.tsx` - PDF template with Harvard format styling
@@ -39,42 +52,35 @@ Continued work on AI-themed portfolio features and added a dynamic resume genera
 - `src/components/ResumeButton.tsx` - Download button component
 - `src/components/sections/Contact.tsx` - Added resume button
 - `src/lib/data.ts` - Updated education formatting, project links
+- `src/app/layout.tsx` - Enhanced SEO metadata
+- `src/app/sitemap.ts` - Dynamic sitemap for Google
+- `public/robots.txt` - Crawler guidance
 
 ### Current State
-- Website live at: https://riddhimanraut.vercel.app
+- **Website live at: https://riddhimanraut.vercel.app**
 - Resume generator working with 1-page Harvard format
 - Hyperparameter sliders in About section functional
 - Cursor-interactive stars in space background working
-
-#### 5. SEO Enhancements
-- Enhanced metadata with comprehensive keywords
-- Added Open Graph and Twitter card tags
-- Created `robots.txt` for crawler guidance
-- Created dynamic `sitemap.ts`
-- Canonical URL set to `riddhimanraut.vercel.app`
+- SEO configured and ready for Google indexing
 
 ### Notes for Next Session
 - Resume pulls from `data.ts` - update that file to update resume content
-- To regenerate resume after data changes, just redeploy
+- To regenerate resume after data changes, just redeploy with `vercel --prod`
 - Consider adding more experiences/projects as career progresses
-- **Custom domain setup pending** - see instructions below
+- To start session: "Read CONVERSATION_LOG.md to get context"
 
 ### How to Get Found on Google
 
-#### Domain
-Using free Vercel subdomain: `riddhimanraut.vercel.app`
+1. **Submit to Google Search Console**
+   - Go to https://search.google.com/search-console
+   - Add `riddhimanraut.vercel.app` as a URL prefix property
+   - Verify ownership
+   - Submit sitemap: `https://riddhimanraut.vercel.app/sitemap.xml`
+   - Request indexing for homepage
 
-#### Step 1: Submit to Google Search Console
-1. Go to https://search.google.com/search-console
-2. Add your domain as a property
-3. Verify ownership (Vercel makes this easy with DNS verification)
-4. Submit your sitemap: `https://riddhimanraut.com/sitemap.xml`
-5. Request indexing for your homepage
-
-#### Step 3: Boost Visibility
-- Link your portfolio from LinkedIn, GitHub, Google Scholar profiles
-- These backlinks help Google rank your site
-- Keep content updated (Google favors fresh content)
+2. **Add Backlinks**
+   - Add portfolio URL to LinkedIn, GitHub, Google Scholar profiles
+   - These backlinks significantly boost Google ranking
 
 ---
 
