@@ -39,7 +39,7 @@ export default function ParticleField({ opacity }: ParticleFieldProps = {}) {
     };
 
     const initParticles = () => {
-      const particleCount = Math.min(100, Math.floor((canvas.width * canvas.height) / 12000));
+      const particleCount = Math.min(60, Math.floor((canvas.width * canvas.height) / 20000));
       particlesRef.current = [];
 
       for (let i = 0; i < particleCount; i++) {
