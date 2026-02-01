@@ -5,25 +5,15 @@ import {
   View,
   StyleSheet,
   Link,
-  Font,
 } from '@react-pdf/renderer';
 
-// Register fonts for a professional look
-Font.register({
-  family: 'Times',
-  fonts: [
-    { src: 'https://cdn.jsdelivr.net/npm/@canvas-fonts/times-new-roman@1.0.4/Times%20New%20Roman.ttf' },
-    { src: 'https://cdn.jsdelivr.net/npm/@canvas-fonts/times-new-roman@1.0.4/Times%20New%20Roman%20Bold.ttf', fontWeight: 'bold' },
-    { src: 'https://cdn.jsdelivr.net/npm/@canvas-fonts/times-new-roman@1.0.4/Times%20New%20Roman%20Italic.ttf', fontStyle: 'italic' },
-  ],
-});
-
+// Using built-in Times-Roman font (no external font loading needed)
 const styles = StyleSheet.create({
   page: {
     padding: 40,
     paddingTop: 30,
     paddingBottom: 30,
-    fontFamily: 'Times',
+    fontFamily: 'Times-Roman',
     fontSize: 10,
     lineHeight: 1.3,
   },
