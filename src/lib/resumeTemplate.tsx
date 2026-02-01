@@ -171,14 +171,7 @@ function ResumeDocument({ data }: { data: ResumeData }) {
         <View style={styles.header}>
           <Text style={styles.name}>{data.name.toUpperCase()}</Text>
           <Text style={styles.contactLine}>
-            {data.location} | {data.email} | {data.workEmail}
-          </Text>
-          <Text style={styles.contactLine}>
-            <Link src={data.linkedinUrl} style={styles.link}>in</Link>
-            {'  |  '}
-            <Link src={data.githubUrl} style={styles.link}>GitHub</Link>
-            {'  |  '}
-            <Link src={data.googleScholarUrl} style={styles.link}>Scholar</Link>
+            {data.location} | {data.email} | <Link src={data.linkedinUrl} style={styles.link}>LinkedIn</Link> | <Link src={data.githubUrl} style={styles.link}>GitHub</Link> | <Link src={data.googleScholarUrl} style={styles.link}>Scholar</Link>
           </Text>
         </View>
 
