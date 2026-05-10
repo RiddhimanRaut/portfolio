@@ -19,7 +19,7 @@ export const personalInfo = {
   education: 'Ph.D. Mechanical Engineering (SciML) | Penn State',
   featuredHighlight: {
     label: 'Recently launched',
-    title: 'SHIFT-Crash: first Physics AI model for full-vehicle crash prediction',
+    title: 'SHIFT-Crash: the first Physics AI model for full-vehicle crash prediction',
     href: shiftCrashLinks.pressRelease,
   },
 };

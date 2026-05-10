@@ -22,7 +22,7 @@ export async function POST() {
       linkedinUrl: socialLinks.linkedin,
       githubUrl: socialLinks.github,
       googleScholarUrl: socialLinks.googleScholar,
-      summary: `ML engineer building Physics AI surrogates for high-fidelity simulation. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash, the first Physics AI for full-vehicle crash prediction.`,
+      summary: `ML engineer building Physics AI surrogates for high-fidelity simulation. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash, the first Physics AI model for full-vehicle crash prediction.`,
       education: education.map((edu) => ({
         institution: edu.institution,
         degree: edu.degree,

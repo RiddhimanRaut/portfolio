@@ -34,7 +34,7 @@ const data: ResumeData = {
 
   // Google-flavored summary: breadth-led with production-ML lean
   // (GCP / Argo Workflows live in the skills row + Luminary tools field, not the summary, to keep one-page fit)
-  summary: `ML engineer building Physics AI surrogates for production. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash, the first Physics AI for full-vehicle crash prediction.`,
+  summary: `ML engineer building Physics AI surrogates for production. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash, the first Physics AI model for full-vehicle crash prediction.`,
 
   education: education.map((edu) => ({
     institution: edu.institution,
