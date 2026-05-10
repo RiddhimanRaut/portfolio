@@ -19,7 +19,7 @@ export const personalInfo = {
   education: 'Ph.D. Mechanical Engineering (SciML) | Penn State',
   featuredHighlight: {
     label: 'Recently launched',
-    title: 'SHIFT-Crash — first Physics AI model for full-vehicle crash prediction',
+    title: 'SHIFT-Crash: first Physics AI model for full-vehicle crash prediction',
     href: shiftCrashLinks.pressRelease,
   },
 };
@@ -32,7 +32,7 @@ export const socialLinks = {
 
 export const aboutContent = {
   paragraphs: [
-    "I'm a Forward Deployed Engineer at Luminary, working at the intersection of computational physics and machine learning. Most recently I developed SHIFT-Crash — the first Physics AI model for full-vehicle crash prediction — generating its 5,000-simulation training dataset, training the model, and presenting the work at SAE World Congress 2026.",
+    "I'm a Forward Deployed Engineer at Luminary, working at the intersection of computational physics and machine learning. Most recently I developed SHIFT-Crash, the first Physics AI model for full-vehicle crash prediction. I generated its 5,000-simulation training dataset, trained the model, and presented the work at SAE World Congress 2026.",
     'With a Ph.D. in Mechanical Engineering from Penn State, I specialized in Scientific Machine Learning (SciML), developing novel approaches to accelerate physics simulations using neural networks and graph-based architectures.',
   ],
   highlights: [
@@ -52,7 +52,7 @@ export const experiences = [
     current: true,
     logo: '/images/logos/luminary-v2.png',
     description: [
-      'Developed SHIFT-Crash — the first Physics AI model for full-vehicle crash prediction, targeting the NHTSA NCAP 56 km/h full-frontal rigid barrier test — predicting full-field deformations and stresses within 2–3% of simulation',
+      'Developed SHIFT-Crash, the first Physics AI model for full-vehicle crash prediction, targeting the NHTSA NCAP 56 km/h full-frontal rigid barrier test. Predicts full-field deformations and stresses within 2–3% of simulation',
       'Curated and generated a 5,000-example training corpus of high-fidelity full-vehicle FE crash simulations (parameterized 2010 Toyota Yaris geometries in OpenRadioss), open-sourced on Hugging Face',
       'Designed multi-resolution geometry encoding (GALE) atop the GeoTransolver architecture; validated on held-out cases for peak deceleration (<3%), firewall intrusion (<2%), and delta-V (<2%). Presented at SAE World Congress 2026',
       'Developing customer-facing, end-to-end Physics AI workflows that bridge research models with production engineering',
@@ -104,9 +104,9 @@ export const projects = [
   {
     id: 'shift-crash',
     title: 'SHIFT-Crash: Physics AI for Full-Vehicle Crash Prediction',
-    period: 'Apr 2026 — Launched',
+    period: 'Apr 2026',
     description:
-      'Developed SHIFT-Crash — the first Physics AI model for full-vehicle crash prediction, targeting the NHTSA NCAP 56 km/h full-frontal rigid barrier test. Built on the GeoTransolver architecture with Geometry-Aware Latent Embedding (GALE), the model predicts full-field deformations and Von Mises stress within 2–3% of simulation in seconds, vs. 10–12 hours of traditional FEM (peak deceleration <3%, firewall intrusion <2%, delta-V sub-2%). Trained on a 5,000-simulation dataset of parameterized 2010 Toyota Yaris geometries simulated in OpenRadioss. Presented at SAE World Congress 2026.',
+      'Developed SHIFT-Crash, the first Physics AI model for full-vehicle crash prediction, targeting the NHTSA NCAP 56 km/h full-frontal rigid barrier test. Built on the GeoTransolver architecture with Geometry-Aware Latent Embedding (GALE), the model predicts full-field deformations and Von Mises stress within 2–3% of simulation in seconds, vs. 10–12 hours of traditional FEM (peak deceleration <3%, firewall intrusion <2%, delta-V sub-2%). Trained on a 5,000-simulation dataset of parameterized 2010 Toyota Yaris geometries simulated in OpenRadioss. Presented at SAE World Congress 2026.',
     tags: ['Physics AI', 'Crash Simulation', 'Full-Vehicle FEA'],
     links: [
       { label: 'Press Release', href: shiftCrashLinks.pressRelease },

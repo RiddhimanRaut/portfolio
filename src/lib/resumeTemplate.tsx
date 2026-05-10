@@ -299,10 +299,9 @@ function ResumeDocument({ data }: { data: ResumeData }) {
                 </View>
               ))}
             </View>
-            {proj.publication && proj.publicationLink && (
+            {proj.publicationLink && (
               <Text style={styles.pubRow}>
-                <Link src={proj.publicationLink} style={styles.link}>{proj.publication}</Link>
-                {proj.publicationVenue ? `, ${proj.publicationVenue}` : ''}
+                <Link src={proj.publicationLink} style={styles.link}>Paper</Link>
               </Text>
             )}
           </View>

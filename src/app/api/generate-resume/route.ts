@@ -22,7 +22,7 @@ export async function POST() {
       linkedinUrl: socialLinks.linkedin,
       githubUrl: socialLinks.github,
       googleScholarUrl: socialLinks.googleScholar,
-      summary: `ML engineer building Physics AI surrogates for high-fidelity simulation. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash — the first Physics AI for full-vehicle crash prediction. Ph.D. in Mechanical Engineering and Computational Science (Penn State, Dec 2025), specializing in Scientific Machine Learning.`,
+      summary: `ML engineer building Physics AI surrogates for high-fidelity simulation. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash, the first Physics AI for full-vehicle crash prediction. Ph.D. in Mechanical Engineering and Computational Science (Penn State, Dec 2025), specializing in Scientific Machine Learning.`,
       education: education.map((edu) => ({
         institution: edu.institution,
         degree: edu.degree,
@@ -68,7 +68,7 @@ export async function POST() {
       },
       talksAndPress: talks.map((t) => ({
         kind: 'talk' as const,
-        text: `${t.title} — ${t.venue} (${t.date})`,
+        text: `${t.title} · ${t.venue} (${t.date})`,
       })),
       leadership: [
         'Mentored Schreyer Honors undergrad on neural operators and diffusion; graduate-level ML lecturer',

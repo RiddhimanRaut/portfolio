@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Riddhiman Raut - Forward Deployed Engineer | Physics AI & SciML',
   description:
-    'Riddhiman Raut — Forward Deployed Engineer (Simulation and Physics AI) at Luminary. Physics-informed machine learning, graph neural networks, and high-performance simulation surrogates. Ph.D. in Mechanical Engineering from Penn State.',
+    'Riddhiman Raut, Forward Deployed Engineer (Simulation and Physics AI) at Luminary. Physics-informed machine learning, graph neural networks, and high-performance simulation surrogates. Ph.D. in Mechanical Engineering from Penn State.',
   keywords: [
     'Riddhiman Raut',
     'Forward Deployed Engineer',
