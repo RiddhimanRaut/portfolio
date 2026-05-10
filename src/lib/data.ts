@@ -54,7 +54,7 @@ export const experiences = [
     description: [
       'Developed SHIFT-Crash, the first Physics AI model for full-vehicle crash prediction, targeting the NHTSA NCAP 56 km/h full-frontal rigid barrier test. Predicts full-field deformations and stresses within 2–3% of simulation',
       'Curated and generated a 5,000-example training corpus of high-fidelity full-vehicle FE crash simulations (parameterized 2010 Toyota Yaris geometries in OpenRadioss), open-sourced on Hugging Face',
-      'Designed multi-resolution geometry encoding (GALE) atop the GeoTransolver architecture; validated on held-out cases for peak deceleration (<3%), firewall intrusion (<2%), and delta-V (<2%). Presented at SAE World Congress 2026',
+      'Validated for peak deceleration (<3%), firewall intrusion (<2%), and delta-V (<2%); achieved sub-element accuracy with only ~300 fine-tuning simulations, addressing the data-dependency question. Presented at SAE World Congress 2026',
       'Developing customer-facing, end-to-end Physics AI workflows that bridge research models with production engineering',
     ],
     links: [

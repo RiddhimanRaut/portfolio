@@ -71,7 +71,8 @@ export async function POST() {
         text: `${t.title} · ${t.venue} (${t.date})`,
       })),
       leadership: [
-        'Mentored Schreyer Honors undergrad on neural operators and diffusion; graduate-level ML lecturer',
+        'Mentored Schreyer Honors student in research on Geometric Neural Operators and Diffusion Models',
+        'Delivered graduate-level lectures on machine learning',
       ],
     };
 
