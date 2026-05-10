@@ -25,6 +25,7 @@ export default function Experience() {
             description={exp.description}
             logo={exp.logo}
             index={index}
+            links={'links' in exp ? exp.links : undefined}
           />
         ))}
       </div>

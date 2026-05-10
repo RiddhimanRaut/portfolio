@@ -7,16 +7,16 @@ export interface AboutTextVariants {
 
 export const aboutParagraph1Variants: AboutTextVariants = {
   conciseCasual:
-    "I'm an engineer at Luminary Cloud working on cloud-based physics simulations. I help companies run complex engineering simulations faster and more efficiently.",
+    "I'm an engineer at Luminary working on Physics AI for engineering simulations. I help companies run complex simulations faster and more efficiently.",
 
   conciseTechnical:
-    "Forward Deployed Engineer at Luminary Cloud, specializing in cloud-native CFD/FEA infrastructure. Building scalable simulation workflows with HPC integration and ML-accelerated solvers.",
+    "Forward Deployed Engineer (Simulation and Physics AI) at Luminary, specializing in Physics AI surrogates and cloud-native CFD/FEA infrastructure. Building scalable simulation workflows with HPC integration and ML-accelerated solvers.",
 
   detailedCasual:
-    "I'm a Forward Deployed Engineer at Luminary Cloud, where I work at the intersection of cloud computing and computational physics. My role involves helping companies move their engineering simulations to the cloud, making complex physics calculations accessible and efficient. I work directly with customers to understand their needs and build custom solutions.",
+    "I'm a Forward Deployed Engineer (Simulation and Physics AI) at Luminary, where I work at the intersection of cloud computing, computational physics, and machine learning. Most recently I developed SHIFT-Crash — Luminary's first Physics AI model for full-vehicle crash prediction — and I work directly with customers to translate complex simulation problems into Physics AI solutions.",
 
   detailedTechnical:
-    "As a Forward Deployed Engineer at Luminary Cloud, I architect and deploy cloud-native computational physics infrastructure. My work spans the full stack of simulation technology: from HPC cluster orchestration and GPU-accelerated solvers to customer-facing APIs and integration pipelines. I specialize in translating complex CFD/FEA workflows into scalable, production-ready systems.",
+    "As a Forward Deployed Engineer (Simulation and Physics AI) at Luminary, I architect and deploy cloud-native computational physics infrastructure and Physics AI surrogates. I recently developed SHIFT-Crash — the first Physics AI model for full-vehicle crash prediction, targeting the NHTSA NCAP 56 km/h full-frontal rigid barrier test — by generating a 5,000-simulation training dataset of parameterized 2010 Toyota Yaris geometries in OpenRadioss, training the model on the GeoTransolver architecture, and presenting the work at SAE World Congress 2026. My broader work spans HPC orchestration, GPU-accelerated solvers, customer-facing APIs, and integration of ML-accelerated surrogates into production CFD/FEA workflows.",
 };
 
 export const aboutParagraph2Variants: AboutTextVariants = {

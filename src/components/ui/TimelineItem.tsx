@@ -3,6 +3,11 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
+interface TimelineLink {
+  label: string;
+  href: string;
+}
+
 interface TimelineItemProps {
   company: string;
   role: string;
@@ -12,6 +17,7 @@ interface TimelineItemProps {
   description: string[];
   logo?: string;
   index: number;
+  links?: TimelineLink[];
 }
 
 export default function TimelineItem({
@@ -23,6 +29,7 @@ export default function TimelineItem({
   description,
   logo,
   index,
+  links,
 }: TimelineItemProps) {
   return (
     <motion.div
@@ -80,6 +87,25 @@ export default function TimelineItem({
             </li>
           ))}
         </ul>
+
+        {links && links.length > 0 && (
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+            <span className="text-slate-500">Links:</span>
+            {links.map((link, i) => (
+              <span key={link.href} className="flex items-center gap-x-3">
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-400 underline-offset-4 transition-colors hover:text-white hover:underline"
+                >
+                  {link.label}
+                </a>
+                {i < links.length - 1 && <span className="text-slate-700">·</span>}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </motion.div>
   );

@@ -3,6 +3,7 @@
 import RocketLaunchAnimation from '@/components/RocketLaunchAnimation';
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/sections/Hero';
+import PressStrip from '@/components/sections/PressStrip';
 import About from '@/components/sections/About';
 import Experience from '@/components/sections/Experience';
 import Projects from '@/components/sections/Projects';
@@ -17,6 +18,7 @@ export default function Home() {
         <Hero />
         {/* Spacer for rocket animation */}
         <div className="h-[150vh]" aria-hidden="true" />
+        <PressStrip />
         <About />
         <Experience />
         <Projects />

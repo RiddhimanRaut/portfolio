@@ -3,7 +3,7 @@
 ## Basic Info
 
 - **Name:** Riddhiman Raut
-- **Current Role:** Forward Deployed Engineer, Simulations and Physics AI @ Luminary Cloud
+- **Current Role:** Forward Deployed Engineer (Simulation and Physics AI) @ Luminary
 - **Location:** San Francisco Bay Area (previously State College, PA)
 - **Email:** rbr5423@psu.edu
 
@@ -15,24 +15,24 @@
 
 ## Bio (Short)
 
-Physics AI engineer building the future of computational simulation. PhD in Scientific Machine Learning from Penn State, now deploying production ML models for complex physics at Luminary Cloud.
+Physics AI engineer building the future of computational simulation. PhD in Scientific Machine Learning from Penn State, now deploying production ML models for complex physics at Luminary — most recently developing SHIFT-Crash, the first Physics AI model for full-vehicle crash prediction.
 
 ## Bio (Extended)
 
-I'm a Forward Deployed Engineer at Luminary Cloud, where I'm the "tip of the spear" — building physics-specific machine learning models for domains like CFD and working directly with engineering clients to create custom AI solutions that transform traditional design optimization workflows.
+I'm a Forward Deployed Engineer (Simulation and Physics AI) at Luminary, where I'm the "tip of the spear" — building physics-specific machine learning models for domains like CFD and crash, and working directly with engineering clients to create custom AI solutions that transform traditional design optimization workflows. I recently developed SHIFT-Crash, the first Physics AI model for full-vehicle crash prediction, and presented it at SAE World Congress 2026.
 
 My research background is in Scientific Machine Learning (SciML), with deep expertise in graph neural networks, neural operators, and high-performance computing. I build surrogate models that make complex physics simulations faster, more scalable, and more accessible.
 
-## Current Role — Luminary Cloud
+## Current Role — Luminary
 
-**Forward Deployed Engineer, Simulations and Physics AI**
+**Forward Deployed Engineer (Simulation and Physics AI)**
 
-- Building physics-specific ML models (currently focused on CFD)
-- Working with engineering clients to provide custom AI solutions
-- Addressing pain points in traditional engineering workflows (e.g., design optimization pipelines)
-- Bridging cutting-edge ML research with real-world engineering applications
+- Developed SHIFT-Crash (April 2026, SAE World Congress) — targeting the NHTSA NCAP 56 km/h full-frontal rigid barrier test; generated the 5,000-simulation training dataset (parameterized 2010 Toyota Yaris in OpenRadioss), trained the model on the GeoTransolver architecture, achieving full-field deformation/stress predictions within 2–3% of simulation
+- Building physics-specific ML models across CFD, crash, and structural domains
+- Working with engineering clients to provide custom Physics AI solutions
+- Bridging cutting-edge ML research with real-world engineering applications (frontal crashworthiness design-space exploration)
 
-*Note: Only discuss publicly available information. Do not mention crash simulations or other non-public work.*
+*Note: Only discuss publicly available information. Public references for SHIFT-Crash: Luminary press release, HuggingFace dataset (luminary-shift/SHIFT-Crash), Luminary demo page.*
 
 ## Education
 

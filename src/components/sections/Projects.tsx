@@ -19,9 +19,10 @@ export default function Projects() {
             period={project.period}
             description={project.description}
             tags={project.tags}
-            publication={project.publication}
-            link={project.link}
-            images={project.images}
+            publication={'publication' in project ? project.publication : undefined}
+            link={'link' in project ? project.link : undefined}
+            links={'links' in project ? project.links : undefined}
+            images={'images' in project ? project.images : undefined}
             index={index}
           />
         ))}

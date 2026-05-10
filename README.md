@@ -1,6 +1,6 @@
 # Riddhiman Raut - Portfolio
 
-Personal portfolio website showcasing my work as a Forward Deployed Engineer specializing in Simulations and Physics AI at Luminary Cloud.
+Personal portfolio website showcasing my work as a Forward Deployed Engineer (Simulation and Physics AI) at Luminary.
 
 ## Tech Stack
 
@@ -52,7 +52,7 @@ portfolio/
 ## Author
 
 **Riddhiman Raut**
-Forward Deployed Engineer, Simulations and Physics AI @ Luminary Cloud
+Forward Deployed Engineer (Simulation and Physics AI) @ Luminary
 PhD in Mechanical Engineering (SciML focus), Penn State
 
 ## License

@@ -57,12 +57,44 @@ export default function Hero() {
           >
             {personalInfo.bio}
           </motion.p>
+
+          {personalInfo.featuredHighlight && (
+            <motion.a
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              href={personalInfo.featuredHighlight.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex max-w-xl items-center gap-2 rounded-full border border-slate-700/60 bg-slate-900/40 px-4 py-1.5 text-sm text-slate-300 backdrop-blur-sm transition-colors hover:border-slate-500 hover:bg-slate-800/60 hover:text-white"
+            >
+              <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-400" />
+              <span className="font-semibold text-slate-400 group-hover:text-slate-200">
+                {personalInfo.featuredHighlight.label}
+              </span>
+              <span className="text-slate-600">·</span>
+              <span className="truncate">{personalInfo.featuredHighlight.title}</span>
+              <svg
+                className="h-3.5 w-3.5 flex-shrink-0 text-slate-500 group-hover:text-slate-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </motion.a>
+          )}
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
           className="flex gap-6"
         >
           <SocialLink href={socialLinks.github} label="GitHub">

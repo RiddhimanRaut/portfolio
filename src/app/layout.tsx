@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Riddhiman Raut - Forward Deployed Engineer | Physics AI & SciML',
   description:
-    'Riddhiman Raut is a Forward Deployed Engineer at Luminary Cloud specializing in physics-informed machine learning, graph neural networks, and CFD/FEA simulations. Ph.D. in Mechanical Engineering from Penn State.',
+    'Riddhiman Raut — Forward Deployed Engineer (Simulation and Physics AI) at Luminary. Physics-informed machine learning, graph neural networks, and high-performance simulation surrogates. Ph.D. in Mechanical Engineering from Penn State.',
   keywords: [
     'Riddhiman Raut',
     'Forward Deployed Engineer',
@@ -27,7 +27,10 @@ export const metadata: Metadata = {
     'GNN',
     'CFD',
     'FEA',
-    'Luminary Cloud',
+    'Luminary',
+    'SHIFT-Crash',
+    'Physics AI for crash',
+    'crash simulation AI',
     'Penn State',
     'Machine Learning Engineer',
     'Simulation Engineer',
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Riddhiman Raut - Forward Deployed Engineer',
     description:
-      'Forward Deployed Engineer at Luminary Cloud. Ph.D. in Mechanical Engineering specializing in Physics AI, Scientific Machine Learning, and Graph Neural Networks.',
+      'Forward Deployed Engineer (Simulation and Physics AI) at Luminary. Physics AI, scientific machine learning, and graph neural networks for computational physics. Ph.D. in Mechanical Engineering, Penn State.',
     type: 'website',
     locale: 'en_US',
     siteName: 'Riddhiman Raut',
@@ -54,7 +57,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Riddhiman Raut - Forward Deployed Engineer',
     description:
-      'Physics AI & Scientific Machine Learning | Luminary Cloud | Penn State Ph.D.',
+      'Physics AI & Scientific Machine Learning at Luminary | Penn State Ph.D. in Mechanical Engineering',
   },
   alternates: {
     canonical: 'https://riddhimanraut.vercel.app',

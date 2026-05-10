@@ -7,6 +7,7 @@ import {
   projects,
   skills,
   socialLinks,
+  talks,
 } from '@/lib/data';
 
 export async function POST() {
@@ -17,10 +18,11 @@ export async function POST() {
       email: personalInfo.email,
       workEmail: personalInfo.workEmail,
       location: personalInfo.location,
+      portfolioUrl: 'https://riddhimanraut.vercel.app',
       linkedinUrl: socialLinks.linkedin,
       githubUrl: socialLinks.github,
       googleScholarUrl: socialLinks.googleScholar,
-      summary: `Forward Deployed Engineer at Luminary Cloud with a Ph.D. in Mechanical Engineering and Computational Science from Penn State (Dec 2025). Expertise in scientific machine learning, graph neural networks, and high-performance computing. Experienced in developing efficient, scalable surrogate models for complex physics simulations.`,
+      summary: `ML engineer building Physics AI surrogates for high-fidelity simulation. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash — the first Physics AI for full-vehicle crash prediction. Ph.D. in Mechanical Engineering and Computational Science (Penn State, Dec 2025), specializing in Scientific Machine Learning.`,
       education: education.map((edu) => ({
         institution: edu.institution,
         degree: edu.degree,
@@ -36,27 +38,40 @@ export async function POST() {
         location: exp.location,
         bullets: exp.description,
         tools: exp.id === 'luminary'
-          ? 'Cloud Infrastructure, CFD/FEA, Python, Simulation Workflows'
+          ? 'Physics AI, CFD/FEA, Python, Cloud Simulation Workflows'
           : exp.id === 'pasteur'
           ? 'Python (JAX, PyTorch), GNNs, Neural Operators, CUDA, Azure ML'
           : undefined,
+        links: 'links' in exp ? exp.links : undefined,
       })),
-      projects: projects.map((proj) => ({
-        title: proj.title,
-        period: proj.period,
-        bullets: [proj.description],
-        publication: proj.publication ? proj.title : undefined,
-        publicationLink: proj.link,
-      })),
+      projects: projects
+        .filter((proj) => proj.id !== 'shift-crash')
+        .map((proj) => ({
+          title: proj.title,
+          period: proj.period,
+          bullets: [proj.description],
+          publication:
+            'publicationTitle' in proj && proj.publicationTitle
+              ? proj.publicationTitle
+              : 'publication' in proj && proj.publication
+                ? proj.title
+                : undefined,
+          publicationVenue:
+            'publicationVenue' in proj ? proj.publicationVenue : undefined,
+          publicationLink: 'link' in proj ? proj.link : undefined,
+        })),
       skills: {
         programming: skills.programming.items,
         ml: skills.ml.items,
         hpc: skills.hpc.items,
         simulation: skills.simulation.items,
       },
+      talksAndPress: talks.map((t) => ({
+        kind: 'talk' as const,
+        text: `${t.title} — ${t.venue} (${t.date})`,
+      })),
       leadership: [
-        'Mentoring Schreyer Honors student in research on Geometric Neural Operators and Diffusion Models',
-        'Delivered graduate-level lectures on machine learning',
+        'Mentored Schreyer Honors undergrad on neural operators and diffusion; graduate-level ML lecturer',
       ],
     };
 

@@ -48,3 +48,6 @@ next-env.d.ts
 
 # OS
 Thumbs.db
+
+# locally-generated resume variants (e.g., resume-google.pdf)
+resume-*.pdf

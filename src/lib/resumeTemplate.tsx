@@ -10,12 +10,12 @@ import {
 // Harvard Resume Format - balanced spacing for 1 page
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 34,
-    paddingBottom: 34,
-    paddingHorizontal: 46,
+    paddingTop: 22,
+    paddingBottom: 18,
+    paddingHorizontal: 42,
     fontFamily: 'Times-Roman',
     fontSize: 10,
-    lineHeight: 1.22,
+    lineHeight: 1.16,
     color: '#000',
   },
   // Header
@@ -57,17 +57,17 @@ const styles = StyleSheet.create({
     fontFamily: 'Times-Bold',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
-    marginBottom: 3,
-    marginTop: 8,
+    marginBottom: 2,
+    marginTop: 6,
   },
   sectionDivider: {
     borderBottomWidth: 0.5,
     borderBottomColor: '#000',
-    marginBottom: 5,
+    marginBottom: 4,
   },
   // Entry rows
   entryContainer: {
-    marginBottom: 6,
+    marginBottom: 5,
   },
   entryHeader: {
     flexDirection: 'row',
@@ -111,6 +111,21 @@ const styles = StyleSheet.create({
     fontSize: 10,
     lineHeight: 1.2,
   },
+  // Links row (under experience bullets)
+  linksRow: {
+    fontSize: 9,
+    marginTop: 1,
+    paddingLeft: 14,
+    color: '#000',
+  },
+  // Publication row (under project bullets)
+  pubRow: {
+    fontSize: 8.5,
+    marginTop: 1,
+    paddingLeft: 14,
+    color: '#000',
+    fontStyle: 'italic',
+  },
   // Skills
   skillsContainer: {
     marginTop: 2,
@@ -134,6 +149,7 @@ export interface ResumeData {
   email: string;
   workEmail: string;
   location: string;
+  portfolioUrl?: string;
   linkedinUrl: string;
   githubUrl: string;
   googleScholarUrl: string;
@@ -153,12 +169,14 @@ export interface ResumeData {
     location: string;
     bullets: string[];
     tools?: string;
+    links?: Array<{ label: string; href: string }>;
   }>;
   projects: Array<{
     title: string;
     period: string;
     bullets: string[];
     publication?: string;
+    publicationVenue?: string;
     publicationLink?: string;
   }>;
   skills: {
@@ -166,7 +184,9 @@ export interface ResumeData {
     ml: string[];
     hpc: string[];
     simulation: string[];
+    physicsAiStack?: string[];
   };
+  talksAndPress?: Array<{ kind: 'talk' | 'press'; text: string; href?: string }>;
   leadership?: string[];
 }
 
@@ -178,7 +198,19 @@ function ResumeDocument({ data }: { data: ResumeData }) {
         <View style={styles.header}>
           <Text style={styles.name}>{data.name.toUpperCase()}</Text>
           <Text style={styles.contactLine}>
-            {data.location} | {data.email} | <Link src={data.linkedinUrl} style={styles.link}>LinkedIn</Link> | <Link src={data.githubUrl} style={styles.link}>GitHub</Link> | <Link src={data.googleScholarUrl} style={styles.link}>Scholar</Link>
+            {data.location} | {data.email}
+            {data.portfolioUrl ? (
+              <>
+                {' | '}
+                <Link src={data.portfolioUrl} style={styles.link}>Portfolio</Link>
+              </>
+            ) : null}
+            {' | '}
+            <Link src={data.linkedinUrl} style={styles.link}>LinkedIn</Link>
+            {' | '}
+            <Link src={data.githubUrl} style={styles.link}>GitHub</Link>
+            {' | '}
+            <Link src={data.googleScholarUrl} style={styles.link}>Scholar</Link>
           </Text>
         </View>
 
@@ -231,6 +263,18 @@ function ResumeDocument({ data }: { data: ResumeData }) {
                 </View>
               ))}
             </View>
+            {exp.links && exp.links.length > 0 && (
+              <Text style={styles.linksRow}>
+                {exp.links.map((l, lIdx) => (
+                  <Text key={lIdx}>
+                    {lIdx > 0 ? ' · ' : ''}
+                    <Link src={l.href} style={styles.link}>
+                      {l.label}
+                    </Link>
+                  </Text>
+                ))}
+              </Text>
+            )}
           </View>
         ))}
 
@@ -254,15 +298,13 @@ function ResumeDocument({ data }: { data: ResumeData }) {
                   <Text style={styles.bulletText}>{bullet}</Text>
                 </View>
               ))}
-              {proj.publication && proj.publicationLink && (
-                <View style={styles.bulletItem}>
-                  <Text style={styles.bullet}>•</Text>
-                  <Text style={styles.bulletText}>
-                    Publication: <Link src={proj.publicationLink} style={styles.link}>{proj.publication}</Link>
-                  </Text>
-                </View>
-              )}
             </View>
+            {proj.publication && proj.publicationLink && (
+              <Text style={styles.pubRow}>
+                <Link src={proj.publicationLink} style={styles.link}>{proj.publication}</Link>
+                {proj.publicationVenue ? `, ${proj.publicationVenue}` : ''}
+              </Text>
+            )}
           </View>
         ))}
 
@@ -286,16 +328,35 @@ function ResumeDocument({ data }: { data: ResumeData }) {
             <Text style={styles.skillLabel}>Simulation & CAE: </Text>
             <Text style={styles.skillText}>{data.skills.simulation.join(', ')}</Text>
           </View>
+          {data.skills.physicsAiStack && data.skills.physicsAiStack.length > 0 && (
+            <View style={styles.skillRow}>
+              <Text style={styles.skillLabel}>Physics AI Stack: </Text>
+              <Text style={styles.skillText}>{data.skills.physicsAiStack.join(', ')}</Text>
+            </View>
+          )}
         </View>
 
-        {/* Leadership */}
-        {data.leadership && data.leadership.length > 0 && (
+        {/* Talks, Teaching & Mentorship (combined) */}
+        {((data.talksAndPress && data.talksAndPress.length > 0) ||
+          (data.leadership && data.leadership.length > 0)) && (
           <>
-            <Text style={styles.sectionTitle}>Leadership & Teaching</Text>
+            <Text style={styles.sectionTitle}>Talks, Teaching & Mentorship</Text>
             <View style={styles.sectionDivider} />
             <View style={styles.bulletList}>
-              {data.leadership.map((item, idx) => (
-                <View key={idx} style={styles.bulletItem}>
+              {data.talksAndPress?.map((item, idx) => (
+                <View key={`t-${idx}`} style={styles.bulletItem}>
+                  <Text style={styles.bullet}>•</Text>
+                  <Text style={styles.bulletText}>
+                    {item.href ? (
+                      <Link src={item.href} style={styles.link}>{item.text}</Link>
+                    ) : (
+                      item.text
+                    )}
+                  </Text>
+                </View>
+              ))}
+              {data.leadership?.map((item, idx) => (
+                <View key={`l-${idx}`} style={styles.bulletItem}>
                   <Text style={styles.bullet}>•</Text>
                   <Text style={styles.bulletText}>{item}</Text>
                 </View>
