@@ -10,12 +10,12 @@ import {
 // Harvard Resume Format - balanced spacing for 1 page
 const styles = StyleSheet.create({
   page: {
-    paddingTop: 22,
-    paddingBottom: 18,
-    paddingHorizontal: 42,
+    paddingTop: 30,
+    paddingBottom: 26,
+    paddingHorizontal: 46,
     fontFamily: 'Times-Roman',
     fontSize: 10,
-    lineHeight: 1.16,
+    lineHeight: 1.2,
     color: '#000',
   },
   // Header
@@ -57,17 +57,17 @@ const styles = StyleSheet.create({
     fontFamily: 'Times-Bold',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
-    marginBottom: 2,
-    marginTop: 6,
+    marginBottom: 3,
+    marginTop: 8,
   },
   sectionDivider: {
     borderBottomWidth: 0.5,
     borderBottomColor: '#000',
-    marginBottom: 4,
+    marginBottom: 5,
   },
   // Entry rows
   entryContainer: {
-    marginBottom: 5,
+    marginBottom: 6,
   },
   entryHeader: {
     flexDirection: 'row',
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 10,
     lineHeight: 1.2,
+    textAlign: 'justify',
   },
   // Links row (under experience bullets)
   linksRow: {
@@ -292,18 +293,26 @@ function ResumeDocument({ data }: { data: ResumeData }) {
               </View>
             </View>
             <View style={styles.bulletList}>
-              {proj.bullets.map((bullet, bIdx) => (
-                <View key={bIdx} style={styles.bulletItem}>
-                  <Text style={styles.bullet}>•</Text>
-                  <Text style={styles.bulletText}>{bullet}</Text>
-                </View>
-              ))}
+              {proj.bullets.map((bullet, bIdx) => {
+                const isLast = bIdx === proj.bullets.length - 1;
+                return (
+                  <View key={bIdx} style={styles.bulletItem}>
+                    <Text style={styles.bullet}>•</Text>
+                    <Text style={styles.bulletText}>
+                      {bullet}
+                      {isLast && proj.publicationLink && (
+                        <>
+                          {' '}
+                          <Link src={proj.publicationLink} style={styles.link}>
+                            [Paper]
+                          </Link>
+                        </>
+                      )}
+                    </Text>
+                  </View>
+                );
+              })}
             </View>
-            {proj.publicationLink && (
-              <Text style={styles.pubRow}>
-                <Link src={proj.publicationLink} style={styles.link}>Paper</Link>
-              </Text>
-            )}
           </View>
         ))}
 

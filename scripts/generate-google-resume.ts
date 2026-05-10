@@ -34,7 +34,7 @@ const data: ResumeData = {
 
   // Google-flavored summary: breadth-led with production-ML lean
   // (GCP / Argo Workflows live in the skills row + Luminary tools field, not the summary, to keep one-page fit)
-  summary: `ML engineer building Physics AI surrogates for production. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash, the first Physics AI for full-vehicle crash prediction. Ph.D. in Mechanical Engineering & Computational Science (Penn State, Dec 2025), specializing in SciML.`,
+  summary: `ML engineer building Physics AI surrogates for production. Research and production experience spanning graph neural networks, transformer-based PDE solvers, and neural operators across crash, CFD/turbulence, and additive manufacturing. Recently developed SHIFT-Crash, the first Physics AI for full-vehicle crash prediction.`,
 
   education: education.map((edu) => ({
     institution: edu.institution,
@@ -93,7 +93,8 @@ const data: ResumeData = {
   // Physics AI Stack skill row.
 
   leadership: [
-    'Honors undergrad mentor (neural operators, diffusion); graduate-level ML lecturer',
+    'Mentored Schreyer Honors student in research on Geometric Neural Operators and Diffusion Models',
+    'Delivered graduate-level lectures on machine learning to classes of 30+ students',
   ],
 };
 
